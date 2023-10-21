@@ -8,40 +8,32 @@
 
 package com.github.plugin;
 
-import org.bukkit.Material;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
 
 public class PluginCommand implements CommandExecutor {
-
+	Teleop teleop;
+	Main main;
+	public PluginCommand(Main plugin) {
+		this.main = plugin;
+	}
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		Player player = (Player) sender;
-		/*
-		 * if (args[0].equalsIgnoreCase("give")) { if (args[1].equalsIgnoreCase("ns")) {
-		 * player.getInventory().addItem(new ItemStack(Material.NETHERITE_SWORD)); Items
-		 * e = new Items(); player.getInventory().addItem(e.magicWand()); } if
-		 * (args[1].equalsIgnoreCase("ar")) { player.setArrowsInBody(999); } } if
-		 * (args[0].equalsIgnoreCase("sit")) { for (Entity e :
-		 * player.getNearbyEntities(100, 100, 100)) { if (e.getType() !=
-		 * EntityType.SKELETON && e.getType() != EntityType.CREEPER) {
-		 * player.addPassenger(e); } } }
-		 */
-		player.setMaxHealth(100);
-		player.setHealth(100);
-		
-		
-		
-		
-		
-		
-		
-		
+		teleop = new Teleop(this.main, player);
+		if (args[0].equalsIgnoreCase("frc")) {
+			if (args[1].equalsIgnoreCase("start")) {
+				teleop = new Teleop(this.main, player);
+				player.sendMessage("Teleop Start!");
+				player.teleport(new Location(Bukkit.getWorld("world"), 23.0, 68.0, 6.0));
+				teleop.runTaskLater((Plugin) this.main, (20 * 135L));
+			}
+		}
 		return false;
 	}
 

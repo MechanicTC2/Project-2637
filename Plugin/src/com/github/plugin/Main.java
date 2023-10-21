@@ -13,7 +13,7 @@ public class Main extends JavaPlugin {
 		//Register Listener and PlayerCommand class
 		System.out.println("Your plugin is now enabled.");
 		getServer().getPluginManager().registerEvents(new Listeners(), this);
-		getCommand("plugin").setExecutor(new PluginCommand());
+		getCommand("2637").setExecutor(new PluginCommand(this));
 	}
 	
 	@Override
