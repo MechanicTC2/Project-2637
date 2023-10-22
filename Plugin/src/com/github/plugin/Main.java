@@ -12,7 +12,7 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		//Register Listener and PlayerCommand class
 		System.out.println("Your plugin is now enabled.");
-		getServer().getPluginManager().registerEvents(new Listeners(), this);
+		getServer().getPluginManager().registerEvents(new Listeners(this), this);
 		getCommand("2637").setExecutor(new PluginCommand(this));
 	}
 	

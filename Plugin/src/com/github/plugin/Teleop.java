@@ -1,6 +1,7 @@
 package com.github.plugin;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -16,10 +17,10 @@ public class Teleop extends BukkitRunnable {
     }
 	@Override
 	public void run() {
-		player.sendMessage("Time's up!");
+		Bukkit.broadcastMessage(ChatColor.RED + "Time's Up!");
 		if (cuboids.game_field.contains(player.getLocation())) {
-			player.teleport(new Location(Bukkit.getWorld("world"), -33.0, 68.0, -10.0));
+			player.teleport(new Location(Bukkit.getWorld("world"), 33.0, 68.0, -10.0));
 		}
-		//cancel();
+		cancel();
 	}
 }
